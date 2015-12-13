@@ -11,9 +11,7 @@ defmodule Fibonacci do
 
 	def nth_term(num), do: nth_term(num, [0,1])
 
-	def nth_term(1,[ _, n2 ]) do
-		n2
-	end
+	def nth_term(1,[ _, n2 ]), do: n2
 
 	def nth_term(counter, [ n1, n2 ]) do
 		nth_term(counter - 1, [n2 , n1 + n2])
