@@ -17,3 +17,4 @@ defmodule Fibonacci do
 		nth_term(counter - 1, [n2 , n1 + n2])
 	end
 end
+ 
