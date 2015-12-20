@@ -108,9 +108,9 @@ end
 # What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 
 defmodule Fibonacci do
-  def first_term_with_n_digits(1), do: 1
+  def index_of_first_term_with_n_digits(1), do: 1
   
-  def first_term_with_n_digits(exp_num_digits) do
+  def index_of_first_term_with_n_digits(exp_num_digits) do
     calculate([1,2], exp_num_digits, 1, 2)
   end
 
@@ -122,9 +122,9 @@ defmodule Fibonacci do
     calculate([n2, n1 + n2], exp_num_digits, n2 |> num_of_digits, index + 1)
   end
 
-  defp num_of_digits(int) do
+  def num_of_digits(int) do
     int
-    |> Integer.to_string
+    |> to_string
     |> String.length
   end
 end
@@ -140,7 +140,7 @@ end
 defmodule SumTheDigitsOfTheFactorial do 
   def solution(int) do
     Factorial.of(int)
-    |> Integer.to_string
+    |> to_string
     |> String.codepoints 
     |> strings_to_integers
     |> Enum.sum
