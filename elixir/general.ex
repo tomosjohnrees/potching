@@ -47,7 +47,7 @@ defmodule LargestPrimeFactor do
 
   defp calculate(num, divisor, limit, []) when divisor > limit, do: num
 
-  defp calculate(num, divisor, limit, [ largest_prime | _ ]) when divisor > limit do
+  defp calculate(_, divisor, limit, [ largest_prime | _ ]) when divisor > limit do
     largest_prime
   end
 
@@ -122,7 +122,7 @@ defmodule Fibonacci do
     calculate([n2, n1 + n2], exp_num_digits, n2 |> num_of_digits, index + 1)
   end
 
-  def num_of_digits(int) do
+  defp num_of_digits(int) do
     int
     |> to_string
     |> String.length
