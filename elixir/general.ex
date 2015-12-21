@@ -203,3 +203,26 @@ defmodule ProjectEuler1 do
     calculate(result, value + 1, lim)
   end
 end
+
+# 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+# What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+defmodule ProjectEuler5 do
+  def solution(lim) when lim |> is_number do
+    range = (round(lim/2))..lim |> Enum.to_list
+    calculate(range, 1, range)
+  end
+
+  def solution(err), do: raise "#{err |> inspect} is not a number"
+
+  defp calculate([], result, _), do: result
+
+  defp calculate([head|tail], result, original_range) when rem(result, head) == 0 do
+    calculate(tail, result, original_range)
+  end
+
+  defp calculate(_, result, original_range) do
+    calculate(original_range, result + 1, original_range)
+  end
+end
