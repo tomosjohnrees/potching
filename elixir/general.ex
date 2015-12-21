@@ -28,11 +28,7 @@ end
 defmodule Kata1 do
   def distance_between_two_coordinates([[x1,y1],[x2,y2]]) do
     :math.sqrt(:math.pow(x2 - x1,2) + :math.pow(y2 - y1,2))
-    |> round_to_two_decimal_places
-  end
-
-  defp round_to_two_decimal_places(num) do
-    Float.round(num,2)
+    |> Float.round(2)
   end
 end
 
@@ -149,10 +145,18 @@ defmodule SumTheDigitsOfTheFactorial do
   end
 
   def solution(err), do: raise "#{err |> inspect} is not a number"
+end
 
-  defp strings_to_integers(list) do
-    Enum.map(list, fn(x) -> x |> String.to_integer end)
+defmodule SumTheDigitsOfTheFactorial do 
+  def solution(int) when int |> is_number do
+    Factorial.of(int)
+    |> to_string
+    |> String.codepoints 
+    |> Enum.map(fn(x) -> x |> String.to_integer end)
+    |> Enum.sum
   end
+
+  def solution(err), do: raise "#{err |> inspect} is not a number"
 end
 
 # The sum of the squares of the first ten natural numbers is,
@@ -164,6 +168,7 @@ end
 # Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
 
 # Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+
 defmodule ProjectEuler6 do
   def solution(lim)  when lim |> is_number do
     square_of_sum(lim) - sum_of_square(lim)
@@ -173,9 +178,7 @@ defmodule ProjectEuler6 do
 
   defp sum_of_square(lim), do: Enum.map(0..lim, fn(x) -> x * x end) |> Enum.sum
 
-  defp square_of_sum(lim), do: 0..lim |> Enum.sum |> square |> round
-
-  defp square(num), do: :math.pow(num, 2)
+  defp square_of_sum(lim), do: 0..lim |> Enum.sum |> :math.pow(2) |> round
 end
 
 # If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
