@@ -140,18 +140,6 @@ defmodule SumTheDigitsOfTheFactorial do
     Factorial.of(int)
     |> to_string
     |> String.codepoints 
-    |> strings_to_integers
-    |> Enum.sum
-  end
-
-  def solution(err), do: raise "#{err |> inspect} is not a number"
-end
-
-defmodule SumTheDigitsOfTheFactorial do 
-  def solution(int) when int |> is_number do
-    Factorial.of(int)
-    |> to_string
-    |> String.codepoints 
     |> Enum.map(fn(x) -> x |> String.to_integer end)
     |> Enum.sum
   end
