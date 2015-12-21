@@ -110,9 +110,11 @@ end
 defmodule Fibonacci do
   def index_of_first_term_with_n_digits(1), do: 1
   
-  def index_of_first_term_with_n_digits(exp_num_digits) do
+  def index_of_first_term_with_n_digits(exp_num_digits) when int |> is_number do
     calculate([1,2], exp_num_digits, 1, 2)
   end
+
+  def index_of_first_term_with_n_digits(err), do: raise "#{err |> inspect} is not a number"
 
   defp calculate(_, exp_num_digits, n1_num_digits, index) when exp_num_digits == n1_num_digits do
     index
@@ -138,13 +140,15 @@ end
 # Find the sum of the digits in the number 100!
 
 defmodule SumTheDigitsOfTheFactorial do 
-  def solution(int) do
+  def solution(int) when int |> is_number do
     Factorial.of(int)
     |> to_string
     |> String.codepoints 
     |> strings_to_integers
     |> Enum.sum
   end
+
+  def solution(err), do: raise "#{err |> inspect} is not a number"
 
   defp strings_to_integers(list) do
     Enum.map(list, fn(x) -> x |> String.to_integer end)
