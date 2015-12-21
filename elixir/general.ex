@@ -161,9 +161,11 @@ end
 
 # Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 defmodule ProjectEuler6 do
-  def solution(lim) do
+  def solution(lim)  when lim |> is_number do
     square_of_sum(lim) - sum_of_square(lim)
   end
+
+  def solution(err), do: raise "#{err |> inspect} is not a number"
 
   defp sum_of_square(lim), do: Enum.map(0..lim, fn(x) -> x * x end) |> Enum.sum
 
