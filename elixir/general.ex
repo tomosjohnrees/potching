@@ -173,3 +173,29 @@ defmodule ProjectEuler6 do
 
   defp square(num), do: :math.pow(num, 2)
 end
+
+# If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+# Find the sum of all the multiples of 3 or 5 below 1000.
+
+defmodule ProjectEuler1 do
+  def solution(num) when num |> is_number, do: calculate(0, 1,num)
+
+  def solution(err), do: raise "#{err |> inspect} is not a number"
+
+  defp calculate(result, value, lim) when value == lim do
+    result
+  end
+
+  defp calculate(result, value, lim) when rem(value, 3) == 0 do
+    calculate(result + value, value + 1, lim)
+  end
+
+  defp calculate(result, value, lim) when rem(value, 5) == 0 do
+    calculate(result + value, value + 1, lim)
+  end
+
+  defp calculate(result, value, lim) do
+    calculate(result, value + 1, lim)
+  end
+end
