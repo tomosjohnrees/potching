@@ -217,3 +217,21 @@ defmodule ProjectEuler5 do
     calculate(original_range, result + 1, original_range)
   end
 end
+
+# An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
+
+# Given a DNA string t corresponding to a coding strand, its transcribed RNA string u is formed by
+# replacing all occurrences of 'T' in t with 'U' in u.
+
+# Given: A DNA string t having length at most 1000 nt.
+
+# Return: The transcribed RNA string of t.
+
+defmodule RosalindTranscribingDnaIntoRna do
+  def transcribe(dna) do 
+    dna
+    |> String.codepoints
+    |> Enum.map(fn(x)  -> if x == "T", do: "U", else: x end)
+    |> Enum.join
+  end
+end
