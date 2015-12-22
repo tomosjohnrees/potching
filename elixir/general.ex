@@ -235,3 +235,35 @@ defmodule RosalindTranscribingDnaIntoRna do
     |> Enum.join
   end
 end
+
+# In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
+
+# The reverse complement of a DNA string s is the string sc formed by reversing the
+# symbols of s, then taking the complement of each symbol (e.g., the reverse complement
+# of "GTCA" is "TGAC").
+
+# Given: A DNA string s of length at most 1000 bp.
+
+# Return: The reverse complement sc of s.
+
+# Sample Dataset
+
+# AAAACCCGGT
+# Sample Output
+
+# ACCGGGTTTT
+
+defmodule ComplementingStrandOfDNA do
+  def of(dna) do
+    dna
+    |> String.codepoints
+    |> Enum.map(fn(x) -> complement(x) end)
+    |> Enum.reverse
+    |> Enum.join 
+  end
+
+  defp complement("A"), do: "T"
+  defp complement("T"), do: "A"
+  defp complement("C"), do: "G"
+  defp complement("G"), do: "C"
+end
