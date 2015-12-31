@@ -267,3 +267,38 @@ defmodule ComplementingStrandOfDNA do
   defp complement("C"), do: "G"
   defp complement("G"), do: "C"
 end
+
+
+# Decoder for Dave Thomas's example Encoder
+# https://youtu.be/5hDVftaPQwY?t=16m56s
+
+defmodule Encoder do
+  def encode(list),
+    do: _encode(list, [])
+
+  defp _encode([], result),
+    do: result |> Enum.reverse
+
+  defp _encode([ a, a|tail ], result),
+    do: _encode([ {a, 2}| tail ], result)
+
+  defp _encode([ {a, n}, a|tail ], result),
+    do: _encode([ {a, n + 1} | tail ], result)
+
+  defp _encode([ a | tail ], result),
+    do: _encode(tail, [a | result ])
+end
+
+defmodule Decoder do
+  def decode(list),
+    do: _decode(list, [])
+
+  defp _decode([], result),
+    do: result |> Enum.reverse
+
+  defp _decode([ {a, n} | tail ], result),
+    do: _decode(tail, [ a |> List.duplicate(n) | result ] |> List.flatten)
+
+  defp _decode([ a | tail ], result),
+    do: _decode(tail, [ a | result ])
+end
