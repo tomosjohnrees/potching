@@ -302,3 +302,30 @@ defmodule Decoder do
   defp _decode([ a | tail ], result),
     do: _decode(tail, [ a | result ])
 end
+
+# In this kata, strings represent buildings while whitespaces
+# within those strings represent ghosts.
+
+# So what are you waiting for? Return the building(string)
+# without any ghosts(whitespaces)!
+
+defmodule GhostBusters do
+  def ghost_busters(string) do
+    _ghost_busters(string |> String.codepoints, "", [])
+  end
+
+  defp _ghost_busters([], " ", result) do
+    _ghost_busters([], "", result)
+  end
+  defp _ghost_busters([], codepoint, result) do
+    [codepoint | result]
+    |> Enum.reverse
+    |> Enum.join
+  end
+  defp _ghost_busters([head | tail], " ", result) do
+    _ghost_busters(tail, head, result)
+  end
+  defp _ghost_busters([head | tail], codepoint, result) do
+    _ghost_busters(tail, head, [codepoint | result])
+  end
+end
