@@ -106,7 +106,7 @@ end
 defmodule Fibonacci do
   def index_of_first_term_with_n_digits(1), do: 1
   
-  def index_of_first_term_with_n_digits(exp_num_digits) when int |> is_number do
+  def index_of_first_term_with_n_digits(exp_num_digits) when exp_num_digits |> is_number do
     calculate([1,2], exp_num_digits, 1, 2)
   end
 
@@ -164,7 +164,7 @@ defmodule ProjectEuler6 do
 
   def solution(err), do: raise "#{err |> inspect} is not a number"
 
-  defp sum_of_square(lim), do: Enum.map(0..lim, fn(x) -> x * x end) |> Enum.sum
+  defp sum_of_square(lim), do: 0..lim |> Enum.map(fn(x) -> x * x end) |> Enum.sum
 
   defp square_of_sum(lim), do: 0..lim |> Enum.sum |> :math.pow(2) |> round
 end
