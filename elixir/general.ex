@@ -308,10 +308,12 @@ end
 
 # So what are you waiting for? Return the building(string)
 # without any ghosts(whitespaces)!
-
 defmodule GhostBusters do
-  def ghost_busters(string) do
-    _ghost_busters(string |> String.codepoints, "", [])
+  def ghost_busters(data) do
+    data
+    |> to_string
+    |> String.codepoints
+    |> _ghost_busters("", [])
   end
 
   defp _ghost_busters([], " ", result) do
