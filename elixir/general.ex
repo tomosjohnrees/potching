@@ -112,7 +112,7 @@ defmodule Fibonacci do
 
   def index_of_first_term_with_n_digits(err), do: raise "#{err |> inspect} is not a number"
 
-  defp calculate(_, exp_num_digits, n1_num_digits, index) when exp_num_digits == n1_num_digits do
+  defp calculate(_, exp_num_digits, exp_num_digits, index) do
     index
   end
 
